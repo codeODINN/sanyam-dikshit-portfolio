@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanyam Dikshit — Senior .NET Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --accent: #7c3aed;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-light: #64748b;
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --success: #059669;
+        }
+
+        html {
+            font-size: 11px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.5;
+            background: var(--bg-light);
+        }
+
+        /* ========== PRINT CONTAINER ========== */
+        .resume {
+            max-width: 794px; /* A4 width */
+            margin: 20px auto;
+            background: var(--bg-white);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 28px 36px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: 20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #94a3b8;
+            letter-spacing: 0.3px;
+            margin-bottom: 14px;
+        }
+
+        .title .highlight {
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            font-size: 0.92rem;
+            color: #cbd5e1;
+        }
+
+        .contact-row a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .contact-icon {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .content {
+            padding: 24px 36px 28px;
+        }
+
+        /* ========== SECTION ========== */
+        .section {
+            margin-bottom: 18px;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-title .icon {
+            font-size: 1rem;
+        }
+
+        /* ========== SUMMARY ========== */
+        .summary {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .summary strong {
+            color: var(--text-primary);
+        }
+
+        /* ========== SKILLS ========== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 5px 12px;
+            font-size: 0.9rem;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            color: var(--primary-dark);
+            padding: 3px 0;
+            white-space: nowrap;
+        }
+
+        .skill-values {
+            color: var(--text-secondary);
+            padding: 3px 0;
+            line-height: 1.5;
+        }
+
+        .skill-values .key {
+            background: linear-gradient(135deg, #ede9fe, #e0e7ff);
+            color: #4338ca;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin: 1px 2px;
+        }
+
+        /* ========== EXPERIENCE ========== */
+        .job {
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .job:last-child {
+            margin-bottom: 0;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2px;
+        }
+
+        .company-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .job-role {
+            font-weight: 600;
+            color: var(--accent);
+            font-size: 0.92rem;
+        }
+
+        .job-duration {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 500;
+            white-space: nowrap;
+            background: var(--bg-light);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .project-name {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            margin: 5px 0 3px;
+        }
+
+        .project-name .tag {
+            font-size: 0.78rem;
+            background: linear-gradient(135deg, #dbeafe, #ede9fe);
+            color: #4338ca;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+            margin-left: 6px;
+        }
+
+        .job-bullets {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-bullets li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+            padding-left: 14px;
+            position: relative;
+            margin-bottom: 2px;
+        }
+
+        .job-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .tech-stack {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-top: 3px;
+            font-style: italic;
+        }
+
+        .tech-stack strong {
+            color: var(--text-secondary);
+            font-style: normal;
+        }
+
+        /* ========== EDUCATION ========== */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 3px 16px;
+            font-size: 0.9rem;
+        }
+
+        .edu-degree {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .edu-institution {
+            color: var(--text-secondary);
+        }
+
+        .edu-year {
+            color: var(--text-light);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* ========== CERTIFICATIONS ========== */
+        .cert-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .cert-list li {
+            padding: 2px 0;
+            color: var(--text-secondary);
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .cert-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-size: 0.7rem;
+            top: 4px;
+        }
+
+        .cert-list li strong {
+            color: var(--text-primary);
+        }
+
+        .cert-planned {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* ========== ACHIEVEMENTS ========== */
+        .achievements-list {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .achievements-list li {
+            padding: 2px 0 2px 14px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .achievements-list li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #f59e0b;
+            font-size: 0.75rem;
+            top: 4px;
+        }
+
+        /* ========== DIVIDER ========== */
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 6px 0;
+        }
+
+        /* ========== PRINT STYLES ========== */
+        @media print {
+            html {
+                font-size: 10.5px;
+            }
+
+            body {
+                background: white;
+            }
+
+            .resume {
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 24px 32px 20px;
+            }
+
+            .content {
+                padding: 20px 32px 24px;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+
+            .job {
+                break-inside: avoid;
+            }
+        }
+
+        /* ========== PRINT BUTTON ========== */
+        .print-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="resume">
+        <!-- ===== HEADER ===== -->
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">SANYAM DIKSHIT</h1>
+                <div class="title">Senior .NET Full Stack Developer · <span class="highlight">4.5+ Years Experience</span></div>
+                <div class="contact-row">
+                    <span class="contact-item">
+                        <span class="contact-icon">✉</span>
+                        <a href="mailto:dixitsanyam6@gmail.com">dixitsanyam6@gmail.com</a>
+                    </span>
+                    <span class="contact-item">
+                        <span class="contact-icon">☎</span>
+                        +91-9897921509
+                    </span>
+                    <span class="contact-item">
+                        <span class="contact-icon">⌘</span>
+                        <a href="https://linkedin.com/in/sanyam-dikshit" target="_blank">LinkedIn</a>
+                    </span>
+                    <span class="contact-item">
+                        <span class="contact-icon">◆</span>
+                        <a href="https://github.com/sanyam-dikshit" target="_blank">GitHub</a>
+                    </span>
+                    <span class="contact-item">
+                        <span class="contact-icon">◎</span>
+                        Noida, Uttar Pradesh
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CONTENT ===== -->
+        <div class="content">
+            <!-- SUMMARY -->
+            <section class="section">
+                <h2 class="section-title"><span class="icon">◈</span> Professional Summary</h2>
+                <p class="summary">
+                    Results-driven <strong>Senior .NET Full Stack Developer</strong> with <strong>4.5+ years</strong> of experience designing, developing, and maintaining <strong>scalable, enterprise-grade applications</strong>. Proficient in building <strong>RESTful APIs</strong>, <strong>microservices architecture</strong>, and <strong>multi-tenant SaaS platforms</strong> using <strong>C#, ASP.NET Core, Entity Framework Core</strong>, and <strong>SQL Server</strong>. Proven track record in implementing <strong>Clean Architecture, CQRS patterns</strong>, and <strong>CI/CD pipelines</strong> with Azure DevOps. Experienced across <strong>healthcare, CRM, and QSR domains</strong> serving high-traffic, multi-store environments. Passionate about writing clean, testable code and continuously optimizing software delivery.
+                </p>
+            </section>
+
+            <!-- TECHNICAL SKILLS -->
+            <section class="section">
+                <h2 class="section-title"><span class="icon">⚙</span> Technical Skills</h2>
+                <div class="skills-grid">
+                    <span class="skill-category">Backend</span>
+                    <span class="skill-values">
+                        <span class="key">C#</span>
+                        <span class="key">ASP.NET Core</span>
+                        <span class="key">.NET 6/7/8</span>
+                        <span class="key">Web API</span>
+                        <span class="key">EF Core</span>
+                        <span class="key">ADO.NET</span>
+                        <span class="key">LINQ</span>
+                        <span class="key">Dapper</span>
+                        <span class="key">MediatR</span>
+                    </span>
+
+                    <span class="skill-category">Architecture</span>
+                    <span class="skill-values">
+                        <span class="key">Clean Architecture</span>
+                        <span class="key">CQRS</span>
+                        <span class="key">Microservices</span>
+                        <span class="key">Repository Pattern</span>
+                        <span class="key">SOLID Principles</span>
+                        <span class="key">Design Patterns</span>
+                        <span class="key">DI</span>
+                    </span>
+
+                    <span class="skill-category">Frontend</span>
+                    <span class="skill-values">
+                        <span class="key">React.js</span>
+                        <span class="key">Redux</span>
+                        <span class="key">JavaScript</span>
+                        <span class="key">TypeScript</span>
+                        <span class="key">jQuery</span>
+                        <span class="key">HTML5</span>
+                        <span class="key">CSS3</span>
+                        <span class="key">Bootstrap</span>
+                        <span class="key">Razor Pages</span>
+                    </span>
+
+                    <span class="skill-category">Database</span>
+                    <span class="skill-values">
+                        <span class="key">SQL Server</span>
+                        <span class="key">PostgreSQL</span>
+                        <span class="key">MySQL</span>
+                        <span class="key">T-SQL</span>
+                        <span class="key">Stored Procedures</span>
+                    </span>
+
+                    <span class="skill-category">Cloud & DevOps</span>
+                    <span class="skill-values">
+                        <span class="key">Azure</span>
+                        <span class="key">Azure DevOps</span>
+                        <span class="key">CI/CD Pipelines</span>
+                        <span class="key">Docker</span>
+                        <span class="key">App Service</span>
+                    </span>
+
+                    <span class="skill-category">Testing & Tools</span>
+                    <span class="skill-values">
+                        <span class="key">xUnit</span>
+                        <span class="key">NUnit</span>
+                        <span class="key">Moq</span>
+                        <span class="key">Git</span>
+                        <span class="key">Postman</span>
+                        <span class="key">Swagger</span>
+                        <span class="key">JIRA</span>
+                        <span class="key">VS</span>
+                    </span>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section class="section">
+                <h2 class="section-title"><span class="icon">▣</span> Professional Experience</h2>
+
+                <!-- Job 1 -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">Suretech Infosoft Pvt. Ltd.</span>
+                            <span class="job-role"> — Senior Software Engineer</span>
+                        </div>
+                        <span class="job-duration">Nov 2024 – Present</span>
+                    </div>
+                    <div class="project-name">QSR-Online & Nex-Gen QSR-Online <span class="tag">Multi-Tenant CRM</span></div>
+                    <ul class="job-bullets">
+                        <li>Architected and developed a <strong>multi-tenant CRM platform</strong> for <strong>50+ QSR stores</strong> using ASP.NET Core Web API, Clean Architecture, and Azure DevOps CI/CD pipelines</li>
+                        <li>Designed <strong>RESTful APIs</strong> serving <strong>10,000+ daily transactions</strong> for real-time sales reporting, inventory management, and labor scheduling modules</li>
+                        <li>Implemented <strong>CQRS pattern with MediatR</strong> for command/query separation, improving API response times by <strong>40%</strong></li>
+                        <li>Built automated <strong>CI/CD pipelines</strong> in Azure DevOps, reducing deployment time from <strong>2 hours to 15 minutes</strong></li>
+                        <li>Developed <strong>role-based access control (RBAC)</strong> with <strong>JWT authentication</strong> for multi-store management</li>
+                    </ul>
+                    <div class="tech-stack"><strong>Stack:</strong> C#, ASP.NET Core, Web API, EF Core, SQL Server, Azure DevOps, CI/CD, jQuery, JavaScript</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Job 2 -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">Groot Software Solutions Pvt. Ltd.</span>
+                            <span class="job-role"> — Software Developer</span>
+                        </div>
+                        <span class="job-duration">Jul 2023 – Oct 2024</span>
+                    </div>
+
+                    <div class="project-name">Cartzie — Food Ordering Platform <span class="tag">E-Commerce</span></div>
+                    <ul class="job-bullets">
+                        <li>Built <strong>end-to-end food ordering application</strong> using ASP.NET Core MVC with Entity Framework Core, serving <strong>100+ restaurants</strong></li>
+                        <li>Integrated <strong>secure payment gateway</strong> for online transactions with order tracking and notification system</li>
+                        <li>Designed <strong>normalized database schema</strong> in SQL Server with optimized stored procedures, reducing query execution time by <strong>30%</strong></li>
+                    </ul>
+
+                    <div class="project-name">POS Modisoft — Multi-Store CRM <span class="tag">Retail POS</span></div>
+                    <ul class="job-bullets">
+                        <li>Developed <strong>multi-store POS/CRM system</strong> using ASP.NET Core MVC and Web APIs, supporting <strong>20+ retail locations</strong></li>
+                        <li>Created <strong>15+ RESTful APIs</strong> for real-time data synchronization between POS terminals and central CRM database</li>
+                        <li>Designed and optimized database structures in <strong>MS SQL Server and PostgreSQL</strong>, improving report generation speed by <strong>50%</strong></li>
+                    </ul>
+                    <div class="tech-stack"><strong>Stack:</strong> C#, ASP.NET Core, MVC, Web API, EF Core, SQL Server, PostgreSQL, jQuery, JavaScript</div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Job 3 -->
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <span class="company-name">Kalkine Consultancy India Pvt. Ltd.</span>
+                            <span class="job-role"> — Frontend Engineer</span>
+                        </div>
+                        <span class="job-duration">Apr 2022 – May 2023</span>
+                    </div>
+                    <div class="project-name">Kalkine Subscription Website <span class="tag">FinTech</span></div>
+                    <ul class="job-bullets">
+                        <li>Developed <strong>responsive, cross-browser compatible UI</strong> using React.js, Redux, and JavaScript for a financial subscription platform (<a href="https://kalkine.com.au/" style="color: var(--primary);">kalkine.com.au</a>)</li>
+                        <li>Improved <strong>page load time by 35%</strong> through code optimization, lazy loading, and asset minification</li>
+                        <li>Built <strong>reusable React components</strong> with Redux state management for dynamic data visualization</li>
+                        <li>Converted Figma/Mockup designs into <strong>pixel-perfect, mobile-responsive</strong> web pages using Agile/Scrum methodology</li>
+                    </ul>
+                    <div class="tech-stack"><strong>Stack:</strong> React.js, Redux, JavaScript, jQuery, HTML5, CSS3, Bootstrap</div>
+                </div>
+            </section>
+
+            <!-- KEY ACHIEVEMENTS -->
+            <section class="section">
+                <h2 class="section-title"><span class="icon">★</span> Key Achievements</h2>
+                <ul class="achievements-list">
+                    <li>Reduced API response time by <strong>40%</strong> through CQRS implementation with MediatR across multi-tenant platform</li>
+                    <li>Built CI/CD pipelines reducing deployment cycles from <strong>hours to minutes</strong>, enabling daily production releases</li>
+                    <li>Designed multi-tenant architecture supporting <strong>50+ store locations</strong> with role-based data isolation</li>
+                    <li>Optimized SQL Server queries reducing report generation time by <strong>50%</strong> for retail analytics dashboard</li>
+                    <li>Mentored junior developers on .NET Core best practices, code review standards, and Clean Architecture principles</li>
+                </ul>
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="section">
+                <h2 class="section-title"><span class="icon">◉</span> Education</h2>
+                <div class="edu-grid">
+                    <span class="edu-degree">Master of Computer Applications (MCA)</span>
+                    <span class="edu-institution">GL Bajaj Institute of Technology & Management, Greater Noida (AKTU)</span>
+                    <span class="edu-year">2022 · 73%</span>
+
+                    <span class="edu-degree">Bachelor of Computer Applications (BCA)</span>
+                    <span class="edu-institution">Institute of Applied Medicine & Research (CCSU)</span>
+                    <span class="edu-year">2020 · 64%</span>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS -->
+            <section class="section">
+                <h2 class="section-title"><span class="icon">✦</span> Certifications & Learning</h2>
+                <ul class="cert-list">
+                    <li><strong>Azure Fundamentals (AZ-900)</strong> — Microsoft <span class="cert-planned">(Planned / In Progress)</span></li>
+                    <li><strong>Azure Developer Associate (AZ-204)</strong> — Microsoft <span class="cert-planned">(Planned)</span></li>
+                    <li>Continuous learning: Clean Architecture, Domain-Driven Design, Microservices patterns</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <button class="print-btn no-print" onclick="window.print()">
+        🖨️ Print / Save as PDF
+    </button>
+</body>
+</html>
