@@ -2,7 +2,7 @@
 
 ### Senior .NET Full Stack Developer | 4.5+ Years Experience
 
-🌐 **Live Site**: [https://codeODINN.github.io/portfolio](https://codeODINN.github.io/portfolio)
+🌐 **Live Site**: [https://codeODINN.github.io/sanyam-dikshit-portfolio/](https://codeODINN.github.io/sanyam-dikshit-portfolio/)
 
 ---
 
@@ -32,7 +32,7 @@ Experienced across **Healthcare, CRM, and QSR (Quick Service Restaurant)** domai
 ## 📫 Connect With Me
 
 - 📧 Email: [dixitsanyam6@gmail.com](mailto:dixitsanyam6@gmail.com)
-- 💼 LinkedIn: [linkedin.com/in/sanyam-dikshit](https://linkedin.com/in/sanyam-dikshit)
+- 💼 LinkedIn: [linkedin.com/in/sanyam-tyagi-dikshit-758a39183](https://www.linkedin.com/in/sanyam-tyagi-dikshit-758a39183/)
 - 🐙 GitHub: [github.com/codeODINN](https://github.com/codeODINN)
 
 ---
