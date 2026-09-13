@@ -197,4 +197,36 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Forced Blob Download Handler for Resume/CV links
+    const resumeDownloadButtons = document.querySelectorAll('a[download], .btn-resume, .btn-download-cv');
+    resumeDownloadButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const fileUrl = this.getAttribute('href') || 'Sanyam_Dikshit_Resume.pdf';
+            if (fileUrl && fileUrl.endsWith('.pdf')) {
+                e.preventDefault();
+                fetch(fileUrl)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network error');
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const blobUrl = window.URL.createObjectURL(blob);
+                        const tempAnchor = document.createElement('a');
+                        tempAnchor.style.display = 'none';
+                        tempAnchor.href = blobUrl;
+                        tempAnchor.download = 'Sanyam_Dikshit_Resume.pdf';
+                        document.body.appendChild(tempAnchor);
+                        tempAnchor.click();
+                        setTimeout(() => {
+                            document.body.removeChild(tempAnchor);
+                            window.URL.revokeObjectURL(blobUrl);
+                        }, 100);
+                    })
+                    .catch(() => {
+                        window.open(fileUrl, '_blank');
+                    });
+            }
+        });
+    });
 });
